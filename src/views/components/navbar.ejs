@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/home">
+        <img src="img/logomarca-oficial.png" alt="logomarca-oficial">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item <%- typeof linkActive !== 'undefined' && linkActive === 'home' ? 'active' : '' %>">
+                <a class="nav-link" href="/home">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </li>
+
+            <li class="nav-item <%- typeof linkActive !== 'undefined' && linkActive === 'funcionarios' ? 'active' : '' %>">
+                <a class="nav-link" href="/home">
+                    <i class="fa-solid fa-users"></i> Funcionários
+                </a>
+            </li>
+
+            <li class="nav-item <%- typeof linkActive !== 'undefined' && linkActive === 'veiculos' ? 'active' : '' %>">
+                <a class="nav-link" href="/home">
+                    <i class="fa-solid fa-truck"></i> Veículos
+                </a>
+            </li>
+
+            <li class="nav-item <%- typeof linkActive !== 'undefined' && linkActive === 'viagens' ? 'active' : '' %>">
+                <a class="nav-link" href="/home">
+                    <i class="fa-solid fa-suitcase"></i> Viagens
+                </a>
+            </li>
+
+            <li class="nav-item dropdown <%- typeof linkActive !== 'undefined' && linkActive === 'relatorios' ? 'active' : '' %>">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-file-excel"></i> Relatórios
+                </a>
+                
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Relatórios 01</a>
+                    <a class="dropdown-item" href="#">Relatórios 02</a>
+                    <a class="dropdown-item" href="#">Relatórios 03</a>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item <%- typeof linkActive !== 'undefined' && linkActive === 'perfil' ? 'active' : '' %>">
+                <a class="nav-link" href="/home">
+                    <i class="fa-solid fa-user-tie"></i> Perfil
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/home">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

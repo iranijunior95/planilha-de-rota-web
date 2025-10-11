@@ -13,11 +13,11 @@ app.set("views", path.join(rootDir, "views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(rootDir, "public")));
+app.use(express.static(path.join(rootDir, "..", "public")));
 
 app.use(layoutMiddleware);
 app.use(router);
 
 connectDatabase();
 
-app.listen(SERVER_PORT, () => console.log(`Servidor rodando na posta ${SERVER_PORT}`));
+app.listen(SERVER_PORT, () => console.log(`🟢 Servidor rodando na posta ${SERVER_PORT}!`));

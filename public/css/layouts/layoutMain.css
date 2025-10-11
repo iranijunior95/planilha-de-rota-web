@@ -1,0 +1,24 @@
+body {
+  padding-top: 5rem;
+}
+
+.navbar {
+  min-height: 70px;   
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.navbar-brand img {
+  height: 55px; 
+  width: auto;
+  object-fit: contain;
+  margin-top: -5px; 
+}
+
+.navbar-brand {
+  margin-right: 16px;
+}
+
+.starter-template {
+  padding-top: 1.5rem;
+}
