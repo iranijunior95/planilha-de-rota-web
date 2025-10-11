@@ -1,0 +1,32 @@
+{
+  "name": "planilha-de-rota-web",
+  "version": "1.0.0",
+  "description": "Este projeto tem como objetivo ajudar a otimizar e gerenciar o processo de entregas de um atacarejo, oferecendo uma plataforma completa para controle de rotas, motoristas, veículos e viagens.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iranijunior95/planilha-de-rota-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/iranijunior95/planilha-de-rota-web/issues"
+  },
+  "homepage": "https://github.com/iranijunior95/planilha-de-rota-web#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mongoose": "^8.19.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
