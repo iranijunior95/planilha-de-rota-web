@@ -1,0 +1,91 @@
+<%# Include do componente Header Titulo %>
+<%- include('../../components/headerTitulo', { 
+    titulo: 'Lista de Funcionários',
+    icone: 'fa-solid fa-users' 
+}) %>
+
+<%# Tabela de Funcionários %>
+<div class="row">
+    <div class="col-12 table-responsive">
+        <table class="table table-bordered table-striped table-sm" border="1" width="100%">
+            <colgroup>
+                <col width="5%">
+                <col width="5%">
+                <col width="60%">
+                <col width="30%">
+            </colgroup>
+
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col"></th>
+                    <th scope="col" class="text-center">NOME</th>
+                    <th scope="col" class="text-center">FUNÇÃO</th>
+                </tr>
+            </thead>
+
+            <tbody id="tbody-table-funcionarios">
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%# Modal de Filtros %>
+<div class="modal fade" id="modalFiltrosFuncionarios" tabindex="-1" aria-labelledby="modalFiltrosFuncionariosLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Filtrar Funcionários</h5>
+            </div>
+
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-disabled" value="nome igual = " disabled>
+                    </div>
+
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="inputNomeFiltro">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-disabled" value="função igual = " disabled>
+                    </div>
+
+                    <div class="col-md-8">
+                        <select class="form-control" id="selectFuncaoFiltro" data-no-select2>
+                            <option value=""></option>
+                            <option value="motorista">MOTORISTA</option>
+                            <option value="ajudante">AJUDANTE</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" id="btn-filtro-buscar">
+                    <b>
+                        <i class="fa-solid fa-filter"></i> Filtrar
+                    </b>
+                </button>
+
+                <button type="button" class="btn btn-danger btn-sm" id="btn-filtro-cancelar">
+                    <b>
+                        <i class="fa-solid fa-xmark"></i> Cancelar
+                    </b>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%# Include do componente ModalForm %>
+<%- include('../../components/funcionarios/modalForm', { 
+    titulo: 'Cadastrar Funcionário' 
+}) %>
+
+
+

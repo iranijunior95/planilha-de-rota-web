@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon-min.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/favicon-min.ico" type="image/x-icon" />
     
     <% if (typeof titulo !== 'undefined') { %>
         <title>Planilha De Rota - <%= titulo %></title>
@@ -29,6 +29,8 @@
     <%- include('../components/navbar', { linkActive }) %>
 
     <main class="container">
+        <div id="div-alerts"></div>
+        
         <div class="starter-template">
             <!-- Renderização do conteudo -->
             <%- body %>
@@ -40,13 +42,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js" integrity="sha256-AFAYEOkzB6iIKnTYZOdUf9FFje6lOTYdwRJKwTN5mks=" crossorigin="anonymous"></script>
+    <script src="/js/layouts/alertsLayouts.js"></script>
 
     <script>
         $(function () {
-            $('select').each(function () {
+            $('select:not([data-no-select2])').each(function () {
                 $(this).select2({
                     theme: 'bootstrap4',
-                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                    width: $(this).data('width') 
+                        ? $(this).data('width') 
+                        : $(this).hasClass('w-100') 
+                            ? '100%' 
+                            : 'style',
                     placeholder: $(this).data('placeholder'),
                     allowClear: Boolean($(this).data('allow-clear')),
                     closeOnSelect: !$(this).attr('multiple'),

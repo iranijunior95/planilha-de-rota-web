@@ -1,0 +1,73 @@
+<%#
+ propriedades componente modalForm Funcionarios:
+ {
+    titulo: 'titulo do modal',
+    dadosFuncionario: 'dados do funcionario' // opcional se não tiver ele vai apresentar os dados em branco
+ }
+%>
+
+<div class="modal fade" id="modalFuncionarios" tabindex="-1" aria-labelledby="modalFuncionariosLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title"><%= titulo %></h5>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="lblNome">Nome:</label>
+
+                            <% if (typeof dadosFuncionario !== 'undefined' && Object.keys(dadosFuncionario).length > 0) { %>
+                                <input type="text" class="form-control" id="inputNome" placeholder="Digite o nome..." value="<%= dadosFuncionario?.nome %>">
+                            <% } else { %>
+                                <input type="text" class="form-control" id="inputNome" placeholder="Digite o nome...">
+                            <% } %>
+
+                            <small id="helpNome" class="form-text text-danger"></small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="lblFuncao">Função:</label>
+
+                            <% if (typeof dadosFuncionario !== 'undefined' && Object.keys(dadosFuncionario).length > 0) { %>
+                                <select class="form-control" id="selectFuncao" data-no-select2>
+                                    <option value="motorista" <%= dadosFuncionario?.funcao === 'motorista' ? 'selected' : '' %> >MOTORISTA</option>
+                                    <option value="ajudante" <%= dadosFuncionario?.funcao === 'ajudante' ? 'selected' : '' %> >AJUDANTE</option>
+                                </select>
+                            <% } else { %>
+                                <select class="form-control" id="selectFuncao" data-no-select2>
+                                    <option value="motorista">MOTORISTA</option>
+                                    <option value="ajudante">AJUDANTE</option>
+                                </select>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <% if (typeof dadosFuncionario !== 'undefined' && Object.keys(dadosFuncionario).length > 0) { %>
+                        <input type="hidden" id="inputId" value="<%= dadosFuncionario?._id %>">
+                    <% } else { %>
+                        <input type="hidden" id="inputId" value="0">
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" id="btn-salvar">
+                    <b>
+                        <i class="fa-solid fa-check"></i> Salvar
+                    </b>
+                </button>
+
+                <button type="button" class="btn btn-danger btn-sm" id="btn-cancelar">
+                    <b>
+                        <i class="fa-solid fa-xmark"></i> Cancelar
+                    </b>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

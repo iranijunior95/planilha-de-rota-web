@@ -1,0 +1,37 @@
+<%#
+ propriedades componente headerTitulo:
+ {
+    titulo: 'titulo da pagina',
+    icone: 'icone disponivel no titulo'
+ }
+%>
+
+<div class="row">
+    <div class="col-12">
+        <h2>
+            <i class="<%= icone %>"></i> <%= titulo %>
+        </h2>
+    </div>
+
+    <div class="col-12">
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-cadastrar">
+            <b>
+                <i class="fa-solid fa-plus"></i> Cadastrar
+            </b>
+        </button>
+
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-detalhes">
+            <b>
+                <i class="fa-solid fa-eye"></i> Detalhes
+            </b>
+        </button>
+
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-filtrar">
+            <b>
+                <i class="fa-solid fa-filter"></i> Filtrar
+            </b>
+        </button>
+
+        <hr>
+    </div>
+</div>
