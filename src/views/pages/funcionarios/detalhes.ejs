@@ -42,7 +42,7 @@
     <div class="col-12 text-center">
         <hr>
 
-        <a href="/funcionarios" class="btn btn-secondary btn-sm" id="btn-excluir">
+        <a href="/funcionarios" class="btn btn-secondary btn-sm">
             <b>
                 <i class="fa-solid fa-arrow-left"></i> Voltar
             </b>
@@ -66,4 +66,10 @@
 <%- include('../../components/funcionarios/modalForm', { 
     titulo: 'Editar Funcionário',
     dadosFuncionario 
+}) %>
+
+<%# Include do componente ModalDelete %>
+<%- include('../../components/modalDelete', {
+    titulo: 'Deletar Funcionário',
+    mensagem: 'Tem certeza de que deseja excluir este funcionário?'
 }) %>

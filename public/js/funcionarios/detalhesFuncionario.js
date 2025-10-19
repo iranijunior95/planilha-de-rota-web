@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', async () => { 
     const $btnEditar = document.querySelector('#btn-editar');
+    const $btnExcluir = document.querySelector('#btn-excluir');
     const $inputNome = document.querySelector('#inputNome');
     const $selectFuncao = document.querySelector('#selectFuncao');
+    const $selectRespostaDeletar = document.querySelector('#selectRespostaDeletar');
     const $inputId = document.querySelector('#inputId');
     const $helpNome = document.querySelector('#helpNome');
     const $tdNome = document.querySelector('#tdNome');
     const $tdFuncao = document.querySelector('#tdFuncao');
     const $btnCancelar = document.querySelector('#btn-cancelar');
     const $btnSalvar = document.querySelector('#btn-salvar');
+    const $btnDeletarConfirmar = document.querySelector('#btn-deletar-confirmar');
+    const $btnDeletarCancelar = document.querySelector('#btn-deletar-cancelar');
 
     async function buscarFuncionarioPeloId() {
         const idFuncionario = window.location.pathname.split("/")[3];
@@ -84,6 +88,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         $('#modalFuncionarios').modal('show');
     });
 
+    $btnExcluir.addEventListener('click', async () => {
+        atualizaDadosFuncionario(await buscarFuncionarioPeloId());
+        $selectRespostaDeletar.value = "sim";
+
+        $('#modalDeletar').modal('show');
+    });
+
     $btnSalvar.addEventListener('click', async () => {
         if (!validarDadosFormulario()) return;
 
@@ -127,7 +138,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         desabilitarElementosModal(false);
     });
 
+    $btnDeletarConfirmar.addEventListener('click', async () => {
+        if ($selectRespostaDeletar.value !== "sim") {
+            $('#modalDeletar').modal('hide');
+
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/funcionarios/${$inputId.value}`, { method: 'DELETE' });
+
+            if (!response.ok) {
+                console.log(`Erro ao deletar funcionário: ${response.statusText}`);
+
+                $('#modalDeletar').modal('hide');
+                alertSystem('Erro ao deletar funcionário, tente novamente mais tarde!', false);
+
+                return;
+            }
+
+            $('#modalDeletar').modal('hide');
+            alertSystem('Funcionário deletado com sucesso!', true);
+
+            document.querySelectorAll('.starter-template')[0].innerHTML = `<div class="row justify-content-center">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="card border-danger shadow">
+                                                                                        <div class="card-body">
+                                                                                            <h1 class="display-4 text-danger text-center">Oops!</h1>
+
+                                                                                            <p class="lead text-justify">O funcionário acabou de ser deletado!</p>
+
+                                                                                            <a href="/funcionarios" class="btn btn-primary mt-3">Voltar para o início</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>`;
+
+        } catch (error) {
+            console.log(`Erro ao deletar funcionário: ${error}`);
+
+            $('#modalDeletar').modal('hide');
+            alertSystem('Erro ao deletar funcionário, tente novamente mais tarde!', false);
+        }
+    });
+
     $btnCancelar.addEventListener('click', () => $('#modalFuncionarios').modal('hide'));
+
+    $btnDeletarCancelar.addEventListener('click', () => $('#modalDeletar').modal('hide'));
 
     atualizaDadosFuncionario(await buscarFuncionarioPeloId());
 });

@@ -33,7 +33,7 @@ async function getById(req, res) {
     const { id } = req.params;
 
     try {
-        const dadosFuncionario = await Funcionario.findById(id);
+        const dadosFuncionario = await Funcionario.findOne({ _id: id, status: true });
 
         if (!dadosFuncionario) {
             return res.status(404).json({
@@ -158,10 +158,48 @@ async function update(req, res) {
     }
 }
 
+async function remove(req, res) {
+    const { id } = req.params;
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({
+                status: false,	
+                message: "ID não localizado"
+            });
+        }
+
+        await Funcionario.findOneAndUpdate(
+            { _id: id },
+            {
+                status: false
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        );
+
+        return res.status(200).json({
+            status: true,
+            message: "Funcionário deletado com sucesso"
+        });
+
+    } catch (error) {
+        console.log(`Erro ao deletar funcionário: ${error}`);
+
+        return res.status(500).json({
+            status: false,
+            message: "Erro interno ao deletar funcionário"
+        });
+    }
+}
+
 export default {
     getAll,
     getById,
     search,
     save,
-    update
+    update,
+    remove
 }

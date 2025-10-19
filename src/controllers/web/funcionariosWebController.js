@@ -12,7 +12,7 @@ async function employeeDetails(req, res) {
     const { id } = req.params;
 
     try {
-        const dadosFuncionario = await Funcionario.findById(id);
+        const dadosFuncionario = await Funcionario.findOne({ _id: id, status: true });
 
         if (!dadosFuncionario) {
             return res.renderLayout("/error", {
