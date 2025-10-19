@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Funcionario from "../../models/Funcionario.js";
 
 async function getAll(req, res) {
@@ -117,9 +118,50 @@ async function save(req, res) {
     }
 }
 
+async function update(req, res) {
+    const { id } = req.params;
+    const { nome, funcao } = req.body;
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({
+                status: false,	
+                message: "ID não localizado"
+            });
+        }
+
+        const funcionarioAlterado = await Funcionario.findOneAndUpdate(
+            { _id: id },
+            {
+                nome: nome.toLocaleLowerCase(),
+                funcao: funcao.toLocaleLowerCase(),
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        );
+
+        return res.status(200).json({
+            status: true,
+            message: "Funcionário alterado com sucesso",
+            funcionario: funcionarioAlterado
+        });
+        
+    } catch (error) {
+        console.log(`Erro ao alterar funcionário: ${error}`);
+
+        return res.status(500).json({
+            status: false,
+            message: "Erro interno ao alterar funcionário"
+        });
+    }
+}
+
 export default {
     getAll,
     getById,
+    search,
     save,
-    search
+    update
 }

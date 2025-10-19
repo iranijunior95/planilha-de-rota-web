@@ -36,6 +36,12 @@ input[type="checkbox"] {
   font-weight: bold;
 }
 
+.tr-cabecalho {
+  background-color: #dee2e6;
+  color: #32383e;
+  font-weight: bold;
+}
+
 .alert-flutuante {
   position: fixed;
   top: 80px;

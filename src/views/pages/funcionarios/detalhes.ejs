@@ -1,0 +1,69 @@
+<%# Header da Pagina %>
+<div class="row">
+    <div class="col-12">
+        <h2>
+            <i class="fa-solid fa-users"></i> Detalhes do Funcionário
+        </h2>
+
+        <hr>
+    </div>
+</div>
+
+<%# Tabela Dados do Funcionário %>
+<div class="row">
+    <div class="col-12 table-responsive">
+        <table class="table table-bordered table-sm" border="1" width="100%">
+            <colgroup>
+                <col width="10%">
+                <col width="90%">
+            </colgroup>
+
+            <tbody id="tbody-table-funcionarios">
+                <tr class="tr-cabecalho">
+                    <td colspan="2" class="text-center"><%= dadosFuncionario?._id %></td>
+                </tr>
+
+                <tr>
+                    <td><b>Nome:</b></td>
+                    <td id="tdNome"><%= dadosFuncionario?.nome.toLocaleUpperCase() %></td>
+                </tr>
+
+                <tr>
+                    <td><b>Função:</b></td>
+                    <td id="tdFuncao"><span class="badge <%= dadosFuncionario?.funcao === "motorista" ? 'badge-info' : 'badge-warning' %>"><%= dadosFuncionario?.funcao %></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%# Grupo de botões Funcionário %>
+<div class="row">
+    <div class="col-12 text-center">
+        <hr>
+
+        <a href="/funcionarios" class="btn btn-secondary btn-sm" id="btn-excluir">
+            <b>
+                <i class="fa-solid fa-arrow-left"></i> Voltar
+            </b>
+        </a>
+
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-editar">
+            <b>
+                <i class="fa-solid fa-edit"></i> Editar
+            </b>
+        </button>
+
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-excluir">
+            <b>
+                <i class="fa-solid fa-trash"></i> Excluir
+            </b>
+        </button>
+    </div>
+</div>
+
+<%# Include do componente ModalForm %>
+<%- include('../../components/funcionarios/modalForm', { 
+    titulo: 'Editar Funcionário',
+    dadosFuncionario 
+}) %>

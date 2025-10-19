@@ -4,5 +4,6 @@ import funcionariosWebController from "../../controllers/web/funcionariosWebCont
 const routeWebEmployees = Router();
 
 routeWebEmployees.get('/', funcionariosWebController.indexEmployees);
+routeWebEmployees.get('/detalhes/:id', funcionariosWebController.employeeDetails);
 
 export default routeWebEmployees;
